@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playwright Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 24px;
+      }
+      .hidden {
+        display: none;
+      }
+      .results {
+        border: 1px solid #ddd;
+        padding: 8px;
+        margin-top: 12px;
+      }
+      .search-results {
+        border: 1px solid #eee;
+        padding: 8px;
+        margin-top: 12px;
+      }
+      .slow-element,
+      .another-element,
+      .might-appear-slowly {
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <h1 class="page-title">Playwright</h1>
+      <p class="class-name">Teaching page for Playwright lessons.</p>
+    </header>
+
+    <nav>
+      <a href="/about">Getting started</a>
+      <a href="/about">Docs</a>
+      <a href="/about">Guides</a>
+      <a href="/about">API</a>
+      <a href="/about"
+        ><svg width="10" height="10" aria-hidden="true">
+          <circle cx="5" cy="5" r="5"></circle>
+        </svg>
+        Community</a
+      >
+    </nav>
+
+    <main>
+      <form id="search-form" action="#" onsubmit="return false;">
+        <label for="search-input">Search</label>
+        <input id="search-input" type="text" placeholder="Search" />
+        <button id="search-button" type="submit">Search</button>
+      </form>
+
+      <section>
+        <button type="button">Click me</button>
+      </section>
+
+      <div class="container">
+        <button type="button">Container button</button>
+      </div>
+
+      <div class="results">Live results block</div>
+
+      <ul>
+        <li>alpha</li>
+        <li>beta</li>
+        <li>gamma</li>
+      </ul>
+
+      <label for="lesson-select">Lesson select</label>
+      <select id="lesson-select">
+        <option value="value1">Option 1</option>
+        <option value="value2">Option 2</option>
+      </select>
+
+      <label><input type="checkbox" /> Accept terms</label>
+
+      <div class="search-results" style="display: none" aria-live="polite">
+        <ul>
+          <li>Result one</li>
+          <li>Result two</li>
+        </ul>
+      </div>
+
+      <div class="slow-element">Slow element</div>
+      <div class="another-element">Another element</div>
+      <div class="might-appear-slowly hidden">Delayed element</div>
+    </main>
+
+    <script>
+      const results = document.querySelector(".results");
+      const delayed = document.querySelector(".might-appear-slowly");
+      const searchForm = document.getElementById("search-form");
+      const searchResults = document.querySelector(".search-results");
+
+      setTimeout(() => {
+        if (results) results.classList.add("hidden");
+      }, 250);
+
+      setTimeout(() => {
+        if (delayed) delayed.classList.remove("hidden");
+      }, 300);
+
+      if (searchForm) {
+        searchForm.addEventListener("submit", () => {
+          if (searchResults) {
+            searchResults.style.display = "block";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

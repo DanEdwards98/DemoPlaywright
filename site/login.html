@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Playwright Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 24px;
+      }
+      #error-message {
+        display: none;
+        color: #b00020;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form id="login-form" action="#" onsubmit="return false;">
+      <label for="email">Email</label>
+      <input id="email" type="email" />
+
+      <label for="password">Password</label>
+      <input id="password" type="password" />
+
+      <button type="submit">Login</button>
+    </form>
+
+    <p id="error-message" role="alert">Invalid credentials</p>
+    <a href="/forgot">Forgot password?</a>
+
+    <script>
+      const form = document.getElementById("login-form");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const errorMessage = document.getElementById("error-message");
+
+      form.addEventListener("submit", () => {
+        const validEmail = "user@example.com";
+        const validPassword = "ValidPassword123";
+
+        if (email.value === validEmail && password.value === validPassword) {
+          window.location.href = "/dashboard";
+          return;
+        }
+
+        errorMessage.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
